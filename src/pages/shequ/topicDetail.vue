@@ -43,7 +43,7 @@
               <span @click="favorTopic2(item)"><img class="zan" src="../../assets/zan-l@2x.png" />
                 <span class="number">{{item.likeCount}}</span>
               </span>
-              <span>回复</span>
+              <span @click="mainCommit(item.id,item.userId)">回复</span>
             </div>
           </div>
           <div class="comment-item-content">
@@ -128,6 +128,19 @@ export default {
     eventHub.$off("refresh", this.getCommentLists);
   },
   methods: {
+    mainCommit(id,userId) {
+      this.$router.push({
+        name: "writeComment",
+        params: {
+          id: this.id,
+          commitId:id,
+          userId:userId,
+          authoerId: this.mainContent.creatorAccount,
+          title: this.mainContent.title1,
+          nickName: this.mainContent.nickName
+        }
+      });
+    },
     getTopicDetails() {
       ajax("post", "/sealfinance-api/topic/selectTopicDetail", {
         topicIds: [this.id]
@@ -135,19 +148,19 @@ export default {
         this.mainContent = resp.data.data.contents[0].mainContent;
       });
     },
-    getCommentLists(id){
-      const _self=this;
+    getCommentLists(id) {
+      const _self = this;
       ajax("post", "/sealfinance-api/comment/selectCommentList", {
         objectType: "topic",
         pageNum: 1,
         secondPageNum: 1,
         sortWay: "favorCount",
-        topicId: id?id:_self.$route.query.id
+        topicId: id ? id : _self.$route.query.id
       }).then(resp => {
-      _self.commentInfos = resp.data.data.commentInfos;
+        _self.commentInfos = resp.data.data.commentInfos;
       });
     },
-        renderText: renderText,
+    renderText: renderText,
     fetchImg: fetchImg,
     getDateDiff: getDateDiff,
     getDetailsHtml(strHtml) {

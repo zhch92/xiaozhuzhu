@@ -38,8 +38,10 @@ export default {
         title: this.params.title
       };
       const params = {
+         userId:this.params.userId,
           productCode: "sealfinance",
           projectName: "sealfinance",
+          id:this.params.commitId,
           objectId: this.params.id, //当前详情id
           objectType: "topic",
           commentDetail: escape(this.textValue), //判断其不为空
