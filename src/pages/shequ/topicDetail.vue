@@ -57,13 +57,11 @@
           </div>
         </div>
         <div class="more-comment" v-if="commentInfos.length>=10">
-          <p>查看全部评论
-            <span>(23)</span>
-          </p>
+          <router-link :to="{ name: 'allComment', query: { id:id}}" tag="p">查看全部评论<span>(23)</span></router-link>
         </div>
       </div>
       <div class="topDetail-footer">
-        <router-link :to="{ name: 'writeComment', params: { id:id,authoerId: mainContent.creatorAccount,title:mainContent.title1,nickName:mainContent.nickName}}" tag="button">写点评论吧</router-link>
+        <router-link :to="{ name: 'writeComment', query: { id:id,authoerId: mainContent.creatorAccount,title:mainContent.title1,nickName:mainContent.nickName}}" tag="button">写点评论吧</router-link>
         <div class="bottom-icons">
           <div :class="['icons',{'disabled':disabled}]" @click="favorTopic">
             <i><img :src="mainContent.favorByCurrUser ?favorBtn2:unfavorBtn2" alt=""></i>
@@ -131,7 +129,7 @@ export default {
     mainCommit(id,userId) {
       this.$router.push({
         name: "writeComment",
-        params: {
+        query: {
           id: this.id,
           commitId:id,
           userId:userId,

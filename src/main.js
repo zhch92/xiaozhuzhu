@@ -12,7 +12,6 @@ import store from './store/index'
 import VueHtml5Editor from 'vue-html5-editor'
 import { TOKEN } from './common/index.js'
 import { getCookie } from './common/cookie.js'
-
 Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.use(VueHtml5Editor, {

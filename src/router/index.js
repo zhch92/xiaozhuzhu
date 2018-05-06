@@ -115,6 +115,11 @@ export default new Router({
         name: 'writeComment',
         component: (resolve) => require(['../pages/shequ/writeComment'], resolve)
       }]
-    }
+    },
+    {
+      path: '/allComment', 
+      name: 'allComment',
+      component: (resolve) => require(['../pages/shequ/allComment'], resolve)
+    },
   ]
 })
